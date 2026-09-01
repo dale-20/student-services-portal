@@ -16,7 +16,7 @@ function formatStudent(student: Student): string {
 
 const student: Student = {
   id: 1,
-  name: "Juan Dela Cruz",
+  name: "Cristian Dale Laureto",
   email: "juan@example.com",
   status: "active",
 };
