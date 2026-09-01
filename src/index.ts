@@ -43,35 +43,35 @@ const student: Student = {
   status: "active",
 };
 
-// console.log(formatStudent(student));
+console.log(formatStudent(student));
 
-// const studentResponse: ApiResponse<Student> = {
-//   success: true,
-//   data: student,
-// };
+const studentResponse: ApiResponse<Student> = {
+  success: true,
+  data: student,
+};
 
-// const studentsResponse: ApiResponse<Student[]> = {
-//   success: true,
-//   data: [student],
-// };
+const studentsResponse: ApiResponse<Student[]> = {
+  success: true,
+  data: [student],
+};
 
-// console.log(studentResponse);
-// console.log(studentsResponse);
+console.log(studentResponse);
+console.log(studentsResponse);
 
-// function isStudent(value: unknown): value is Student {
-//   if (typeof value !== "object" || value === null) {
-//     return false;
-//   }
+function isStudent(value: unknown): value is Student {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
 
-//   const student = value as Record<string, unknown>;
+  const student = value as Record<string, unknown>;
 
-//   return (
-//     typeof student.id === "number" &&
-//     typeof student.name === "string" &&
-//     typeof student.email === "string" &&
-//     (student.status === "active" || student.status === "inactive")
-//   );
-// }
+  return (
+    typeof student.id === "number" &&
+    typeof student.name === "string" &&
+    typeof student.email === "string" &&
+    (student.status === "active" || student.status === "inactive")
+  );
+}
 
 // const validData: unknown = {
 //   id: 2,
@@ -97,18 +97,18 @@ const student: Student = {
 // console.log("Invalid ID:", isStudent(invalidIdData));
 // console.log("Missing name:", isStudent(missingNameData));
 
-// function formatStudentStatus(status: Student["status"]): string {
-//   switch (status) {
-//     case "active":
-//       return "Active Student";
+function formatStudentStatus(status: Student["status"]): string {
+  switch (status) {
+    case "active":
+      return "Active Student";
 
-//     case "inactive":
-//       return "Inactive Student";
+    case "inactive":
+      return "Inactive Student";
 
-//     default:
-//       return "Unknown Student Status";
-//   }
-// }
+    default:
+      return "Unknown Student Status";
+  }
+}
 
 function getStudentDisplayName(student: Student): string {
   return `${student.name} (${student.email})`;
@@ -283,3 +283,7 @@ const adminUser: Admin = {
 
 console.log(describeUserRole(regularUser));
 console.log(describeUserRole(adminUser));
+
+const unexpectedStatus = "pending" as Student["status"];
+
+console.log("Unexpected status:", formatStudentStatus(unexpectedStatus));
