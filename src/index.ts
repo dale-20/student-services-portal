@@ -10,6 +10,13 @@ interface ApiResponse<T> {
   data: T;
 }
 
+interface StudentStats {
+  total: number;
+  active: number;
+  inactive: number;
+  averageId: number;
+}
+
 function formatStudent(student: Student): string {
   return `${student.id} - ${student.name} (${student.status})`;
 }
@@ -179,6 +186,32 @@ function getActiveStudents(): Student[] {
   return students.filter((student) => student.status === "active");
 }
 
-console.log("Student with ID 1:", getStudentById(1));
-console.log("Student with ID 999:", getStudentById(999));
-console.log("Active students:", getActiveStudents());
+// console.log("Student with ID 1:", getStudentById(1));
+// console.log("Student with ID 999:", getStudentById(999));
+// console.log("Active students:", getActiveStudents());
+
+function getStudentStats(): StudentStats {
+  const total = students.length;
+
+  const active = students.filter(
+    (student) => student.status === "active",
+  ).length;
+
+  const inactive = students.filter(
+    (student) => student.status === "inactive",
+  ).length;
+
+  const averageId =
+    total === 0
+      ? 0
+      : students.reduce((sum, student) => sum + student.id, 0) / total;
+
+  return {
+    total,
+    active,
+    inactive,
+    averageId,
+  };
+}
+
+console.log("Student statistics:", getStudentStats());
