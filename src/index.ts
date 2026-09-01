@@ -74,3 +74,19 @@ const missingNameData: unknown = {
 console.log("Valid student:", isStudent(validData));
 console.log("Invalid ID:", isStudent(invalidIdData));
 console.log("Missing name:", isStudent(missingNameData));
+
+function formatStudentStatus(status: Student["status"]): string {
+  switch (status) {
+    case "active":
+      return "Active Student";
+
+    case "inactive":
+      return "Inactive Student";
+
+    default:
+      return "Unknown Student Status";
+  }
+}
+
+console.log(formatStudentStatus("active"));
+console.log(formatStudentStatus("inactive"));
