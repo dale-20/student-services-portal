@@ -145,7 +145,40 @@ function summarizeScores(scores: number[]): {
 
 const scores = [85, 90, 78, 92, 88];
 
-console.log("Average:", calculateAverage(scores));
-console.log("Summary:", summarizeScores(scores));
+// console.log("Average:", calculateAverage(scores));
+// console.log("Summary:", summarizeScores(scores));
 
-console.log("Empty scores:", summarizeScores([]));
+// console.log("Empty scores:", summarizeScores([]));
+
+const students: Student[] = [
+  {
+    id: 1,
+    name: "Juan Dela Cruz",
+    email: "juan@example.com",
+    status: "active",
+  },
+  {
+    id: 2,
+    name: "Maria Santos",
+    email: "maria@example.com",
+    status: "inactive",
+  },
+  {
+    id: 3,
+    name: "Pedro Garcia",
+    email: "pedro@example.com",
+    status: "active",
+  },
+];
+
+function getStudentById(id: number): Student | undefined {
+  return students.find((student) => student.id === id);
+}
+
+function getActiveStudents(): Student[] {
+  return students.filter((student) => student.status === "active");
+}
+
+console.log("Student with ID 1:", getStudentById(1));
+console.log("Student with ID 999:", getStudentById(999));
+console.log("Active students:", getActiveStudents());
