@@ -101,8 +101,51 @@ function getStudentLabel(student: Student, prefix: string = "Student"): string {
 }
 // console.log(formatStudentStatus("active"));
 // console.log(formatStudentStatus("inactive"));
-console.log(getStudentDisplayName(student));
-console.log(greetStudent(student));
-console.log(greetStudent(student, "Welcome"));
-console.log(getStudentLabel(student));
-console.log(getStudentLabel(student, "User"));
+// console.log(getStudentDisplayName(student));
+// console.log(greetStudent(student));
+// console.log(greetStudent(student, "Welcome"));
+// console.log(getStudentLabel(student));
+// console.log(getStudentLabel(student, "User"));
+
+function calculateAverage(scores: number[]): number {
+  if (scores.length === 0) {
+    return 0;
+  }
+
+  const total = scores.reduce((sum, score) => sum + score, 0);
+
+  return total / scores.length;
+}
+
+function summarizeScores(scores: number[]): {
+  average: number;
+  highest: number;
+  lowest: number;
+} {
+  if (scores.length === 0) {
+    return {
+      average: 0,
+      highest: 0,
+      lowest: 0,
+    };
+  }
+
+  const average = calculateAverage(scores);
+
+  const highest = scores.reduce((max, score) => (score > max ? score : max));
+
+  const lowest = scores.reduce((min, score) => (score < min ? score : min));
+
+  return {
+    average,
+    highest,
+    lowest,
+  };
+}
+
+const scores = [85, 90, 78, 92, 88];
+
+console.log("Average:", calculateAverage(scores));
+console.log("Summary:", summarizeScores(scores));
+
+console.log("Empty scores:", summarizeScores([]));
