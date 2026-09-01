@@ -214,4 +214,32 @@ function getStudentStats(): StudentStats {
   };
 }
 
-console.log("Student statistics:", getStudentStats());
+// console.log("Student statistics:", getStudentStats());
+
+type Result<T> =
+  | {
+      success: true;
+      data: T;
+    }
+  | {
+      success: false;
+      error: string;
+    };
+
+function getStudentEmail(id: number): Result<string> {
+  const student = getStudentById(id);
+
+  if (!student) {
+    return {
+      success: false,
+      error: "Student not found",
+    };
+  }
+
+  return {
+    success: true,
+    data: student.email,
+  };
+}
+
+console.log("Email result:", getStudentEmail(1));
