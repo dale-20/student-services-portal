@@ -5,6 +5,21 @@ interface Student {
   status: "active" | "inactive";
 }
 
+type UserRole = User | Admin;
+
+interface User {
+  id: number;
+  name: string;
+  role: "user";
+}
+
+interface Admin {
+  id: number;
+  name: string;
+  role: "admin";
+  permissions: string[];
+}
+
 interface ApiResponse<T> {
   success: boolean;
   data: T;
@@ -242,4 +257,29 @@ function getStudentEmail(id: number): Result<string> {
   };
 }
 
-console.log("Email result:", getStudentEmail(1));
+// console.log("Email result:", getStudentEmail(1));
+// console.log("Email result:", getStudentEmail(999));
+
+function describeUserRole(user: UserRole): string {
+  if (user.role === "admin") {
+    return `Admin ${user.name} has ${user.permissions.length} permission(s).`;
+  }
+
+  return `User ${user.name} has standard access.`;
+}
+
+const regularUser: User = {
+  id: 1,
+  name: "Juan Dela Cruz",
+  role: "user",
+};
+
+const adminUser: Admin = {
+  id: 2,
+  name: "Maria Santos",
+  role: "admin",
+  permissions: ["manage_students", "view_reports"],
+};
+
+console.log(describeUserRole(regularUser));
+console.log(describeUserRole(adminUser));
