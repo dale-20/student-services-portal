@@ -1,9 +1,10 @@
-interface Student {
-  id: number;
-  name: string;
-  email: string;
-  status: "active" | "inactive";
-}
+import {
+  type ApiResponse,
+  type Student,
+  formatStudent,
+  formatStudentStatus,
+  isStudent,
+} from "./student.js";
 
 type UserRole = User | Admin;
 
@@ -20,20 +21,11 @@ interface Admin {
   permissions: string[];
 }
 
-interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-}
-
 interface StudentStats {
   total: number;
   active: number;
   inactive: number;
   averageId: number;
-}
-
-function formatStudent(student: Student): string {
-  return `${student.id} - ${student.name} (${student.status})`;
 }
 
 const student: Student = {
@@ -58,21 +50,6 @@ const studentsResponse: ApiResponse<Student[]> = {
 console.log(studentResponse);
 console.log(studentsResponse);
 
-function isStudent(value: unknown): value is Student {
-  if (typeof value !== "object" || value === null) {
-    return false;
-  }
-
-  const student = value as Record<string, unknown>;
-
-  return (
-    typeof student.id === "number" &&
-    typeof student.name === "string" &&
-    typeof student.email === "string" &&
-    (student.status === "active" || student.status === "inactive")
-  );
-}
-
 const validData: unknown = {
   id: 2,
   name: "Maria Santos",
@@ -96,19 +73,6 @@ const missingNameData: unknown = {
 console.log("Valid student:", isStudent(validData));
 console.log("Invalid ID:", isStudent(invalidIdData));
 console.log("Missing name:", isStudent(missingNameData));
-
-function formatStudentStatus(status: Student["status"]): string {
-  switch (status) {
-    case "active":
-      return "Active Student";
-
-    case "inactive":
-      return "Inactive Student";
-
-    default:
-      return "Unknown Student Status";
-  }
-}
 
 function getStudentDisplayName(student: Student): string {
   return `${student.name} (${student.email})`;
@@ -284,6 +248,4 @@ const adminUser: Admin = {
 console.log(describeUserRole(regularUser));
 console.log(describeUserRole(adminUser));
 
-const unexpectedStatus = "pending" as Student["status"];
-
-console.log("Unexpected status:", formatStudentStatus(unexpectedStatus));
+console.log("Unexpected status:", formatStudentStatus("pending"));
