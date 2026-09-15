@@ -12,6 +12,7 @@ Workflow
 - Chapter 1 feature Issue: https://github.com/dale-20/student-services-portal/issues/1
 - Chapter 1 feature Pull Request: https://github.com/dale-20/student-services-portal/pull/2
 - Compliance branch: `docs/chapter-1-compliance`
+- Compliance Pull Request: https://github.com/dale-20/student-services-portal/pull/3
 
 ## Part 1 - Development Environment
 
@@ -93,9 +94,9 @@ branch and merged through PR #2, which closed Issue #1 and placed the feature on
 
 The remote feature branch was deleted after merging, but its commits and branch
 name remain visible in PR #2. The compliance work is being performed on
-`docs/chapter-1-compliance`. A genuine review from another student or the
-instructor is still required before that Pull Request is merged; it cannot be
-authored or simulated by the repository owner.
+`docs/chapter-1-compliance` through PR #3. A genuine review from another student
+or the instructor is still required before that Pull Request is merged; it
+cannot be authored or simulated by the repository owner.
 
 ## Parts 16-17 - AI-Assisted Development and Review Form
 
